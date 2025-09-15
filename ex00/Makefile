@@ -14,7 +14,9 @@ NAME := polym
 
 VAL := valgrind --leak-check=full --track-origins=yes
 
-SRC := main.cpp
+SRC := main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+
+INC := Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 
 OBJ := $(SRC:.cpp=.o)
 
@@ -25,7 +27,7 @@ $(NAME): $(OBJ)
 	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 	@printf "$(GREEN)  Successfully built $(NAME)$(RESET)\n"
 
-%.o: %.cpp
+%.o: %.cpp $(INC)
 	@printf "$(YELLOW)  Compiling $<...$(RESET)\n"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
