@@ -10,13 +10,13 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-NAME := abstract
+NAME := interface
 
 VAL := valgrind --leak-check=full --track-origins=yes
 
-SRC := main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC := main.cpp Materia.cpp
 
-INC := Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
+INC := Materia.hpp MateriaSource.hpp Character.hpp
 
 OBJ := $(SRC:.cpp=.o)
 

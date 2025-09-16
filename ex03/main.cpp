@@ -1,53 +1,26 @@
-#include <iostream>
-#include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-
-const int MAX_ANIMALS = 10;
-
-void testAnimalArray()
-{
-	std::cout << "\n=== Testing Animal Array ===\n\n";
-
-	AAnimal* animals[MAX_ANIMALS];
-
-	for (int i = 0; i < MAX_ANIMALS; i++)
-	{
-		if (i < MAX_ANIMALS / 2)
-			animals[i] = new Dog();
-		else
-			animals[i] = new Cat();
-	}
-
-	std::cout << std::string(50, '-') << std::endl;
-
-	for (int i = 0; i < MAX_ANIMALS; i++)
-		delete animals[i];
-}
-
-void testDogCopy()
-{
-	std::cout << "\n=== Testing Dog Deep Copy ===\n\n";
-
-	Dog dog;
-	dog.getBrain()->setIdea("++[New DOG idea]++", 0);
-
-	Dog copyDog(dog); // copy constructor
-	std::cout << "Copied Dog idea[0]: " 
-			<< copyDog.getBrain()->getIdea(0) 
-			<< std::endl;
-}
+#include "Materia.hpp"
+#include "MateriaSource.hpp"
+#include "Character.hpp"
 
 int main()
 {
-	testAnimalArray();
-	testDogCopy();
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
-	// u can't do that because this animal refuses to be born! 😈❌
-	// AAnimal animal = AAnimal();
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
 
-	std::cout << "\n=== End of Tests ===\n";
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	delete bob;
+	delete me;
+	delete src;
 	return (0);
 }
