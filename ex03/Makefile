@@ -16,7 +16,7 @@ VAL := valgrind --leak-check=full --track-origins=yes
 
 SRC := main.cpp Materia.cpp
 
-INC := Materia.hpp MateriaSource.hpp Character.hpp IMateriaSource.hpp ICharacter.hpp Ice.hpp Cure.hpp
+INC := AMateria.hpp MateriaSource.hpp Character.hpp IMateriaSource.hpp ICharacter.hpp Ice.hpp Cure.hpp
 
 OBJ := $(SRC:.cpp=.o)
 

@@ -2,13 +2,15 @@
 # define MATERIA_SOURCE_HPP
 
 #include <string>
-#include "Materia.hpp"
 #include "IMateriaSource.hpp"
 
 class MateriaSource : public IMateriaSource
 {
 	public:
-		MateriaSource;
+		MateriaSource();
+		MateriaSource(const MateriaSource &obj);
+		MateriaSource &operator=(const MateriaSource &obj);
+		~MateriaSource();
 };
 
 #endif
