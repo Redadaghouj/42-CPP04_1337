@@ -8,13 +8,15 @@
 class Character : public ICharacter
 {
 	private:
-		AMateria *inventory[4];
+		std::string _name;
+		static const int INVENTORY_SIZE = 4;
+		AMateria *_inventory[INVENTORY_SIZE];
 	public:
 		Character();
 		Character(const Character &obj);
 		Character &operator=(const Character &obj);
 		~Character();
-		std::string const &getName();
+		std::string const &getName() const;
 		void equip(AMateria *m);
 		void unequip(int idx);
 		void use(int idx, ICharacter &target);

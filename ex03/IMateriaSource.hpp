@@ -2,7 +2,7 @@
 # define IMATERIA_SOURCE_HPP
 
 #include <string>
-#include "Materia.hpp"
+#include "AMateria.hpp"
 
 class IMateriaSource
 {
