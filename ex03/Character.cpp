@@ -48,7 +48,10 @@ std::string const& Character::getName() const
 
 void Character::equip(AMateria *m)
 {
-
+	if (m == NULL || _inventoryCount > 3)
+		return ;
+	_inventory[_inventoryCount] = m;
+	_inventoryCount++;
 }
 
 void Character::unequip(int idx)

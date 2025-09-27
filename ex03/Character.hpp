@@ -10,6 +10,7 @@ class Character : public ICharacter
 	private:
 		std::string _name;
 		static const int INVENTORY_SIZE = 4;
+		int _inventoryCount;
 		AMateria *_inventory[INVENTORY_SIZE];
 	public:
 		Character();
