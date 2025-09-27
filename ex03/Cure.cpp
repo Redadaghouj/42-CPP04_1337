@@ -9,17 +9,16 @@ Cure::Cure()
 	std::cout << "Cure default constructor" << std::endl;
 }
 
-Cure::Cure(const Cure &obj)
+Cure::Cure(const Cure &obj) : AMateria(obj)
 {
 	std::cout << "Cure copy constructor" << std::endl;
-	this->_type = _type;
 }
 
 Cure& Cure::operator=(const Cure &obj)
 {
 	std::cout << "Cure operator =" << std::endl;
 	if (this != &obj)
-		this->_type = _type;
+		_type = this->_type;
 	return (*this);
 }
 

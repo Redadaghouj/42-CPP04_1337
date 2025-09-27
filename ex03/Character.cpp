@@ -11,14 +11,28 @@ Character::Character() : _name("")
 	std::cout << "Character default constructor" << std::endl;
 	for (int i = 0; i < INVENTORY_SIZE; i++)
 		_inventory[i] = NULL;
+	_inventoryCount = 0;
 	instanceCount++;
 }
 
-Character::Character(const Character &obj) : _name(obj._name)
+Character::Character(const std::string &name) : _name(name)
+{
+	std::cout << "Character named constructor" << std::endl;
+	for (int i = 0; i < INVENTORY_SIZE; i++)
+		_inventory[i] = NULL;
+	_inventoryCount = 0;
+	instanceCount++;
+}
+
+Character::Character(const Character &obj) : _name(obj._name), _inventoryCount(obj._inventoryCount)
 {
 	std::cout << "Character copy constructor" << std::endl;
-	for (int i = 0; i < INVENTORY_SIZE; i++)
-		_inventory[i] = obj._inventory[i]->clone();
+	for (int i = 0; i < INVENTORY_SIZE; i++) {
+		if (obj._inventory[i])
+			_inventory[i] = obj._inventory[i]->clone();
+		else
+			_inventory[i] = NULL;
+	}
 	instanceCount++;
 }
 
@@ -57,26 +71,34 @@ std::string const& Character::getName() const
 void Character::equip(AMateria *m)
 {
 	if (m == NULL || _inventoryCount > 3)
+	{
+		std::cout << "Inventory full or Materia is NULL" << std::endl;
+		delete m;
 		return ;
+	}
 	_inventory[_inventoryCount] = m;
+	std::cout << "Equipped materia at index " << _inventoryCount << std::endl;
 	_inventoryCount++;
 }
 
 void Character::unequip(int idx)
 {
+	if (idx < 0 || idx >= INVENTORY_SIZE)
+	{
+		std::cout << "Invalid index." << std::endl;
+		return ;
+	}
 	_addMateria(_inventory[idx]);
 	_inventory[idx] = NULL;
+	std::cout << "Unequiped materia at index " << idx << std::endl;
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-	if ((idx > 0 && idx < INVENTORY_SIZE) && _inventory[idx])
-	{
+	if ((idx >= 0 && idx < INVENTORY_SIZE) && _inventory[idx])
 		_inventory[idx]->use(target);
-		std::cout << "* poisons " << target.getName() << "! *" << std::endl;
-	}
 	else
-		std::cout << "* Wrong index! you cannot use this materia *" << std::endl;
+		std::cout << "Wrong index! you cannot use this materia" << std::endl;
 }
 
 void Character::_addMateria(AMateria *materia)
@@ -89,9 +111,13 @@ void Character::_addMateria(AMateria *materia)
 
 void Character::_clearAllMaterias()
 {
-	while (list)
+	DroppedList* tmp;
+
+    while (list)
 	{
-		delete list->materia;
-		list = list->next;
-	}
+		tmp = list;
+        list = list->next;
+        delete tmp->materia;
+        delete tmp;
+    }
 }

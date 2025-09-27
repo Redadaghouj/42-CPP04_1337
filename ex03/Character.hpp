@@ -24,6 +24,7 @@ class Character : public ICharacter
 		void _clearAllMaterias();
 	public:
 		Character();
+		Character(const std::string &name);
 		Character(const Character &obj);
 		Character &operator=(const Character &obj);
 		~Character();

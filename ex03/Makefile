@@ -9,11 +9,11 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-NAME := interface
+NAME := materia
 
 VAL := valgrind --leak-check=full --track-origins=yes
 
-SRC := main.cpp Materia.cpp
+SRC := main.cpp AMateria.cpp Character.cpp MateriaSource.cpp Ice.cpp Cure.cpp
 
 INC := AMateria.hpp MateriaSource.hpp Character.hpp IMateriaSource.hpp ICharacter.hpp Ice.hpp Cure.hpp
 

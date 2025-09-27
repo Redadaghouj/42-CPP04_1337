@@ -7,6 +7,10 @@
 
 class MateriaSource : public IMateriaSource
 {
+	private:
+		static const int MATERIA_SIZE = 4;
+		int _materiaCount;
+		AMateria *_materia[MATERIA_SIZE];
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &obj);
