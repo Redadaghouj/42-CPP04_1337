@@ -5,16 +5,29 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 
+struct DroppedList
+{
+	AMateria *materia;
+	DroppedList *next;
+};
+
 class Character : public ICharacter
 {
 	private:
-		AMateria *inventory[4];
+		std::string _name;
+		static const int INVENTORY_SIZE = 4;
+		int _inventoryCount;
+		AMateria *_inventory[INVENTORY_SIZE];
+		static DroppedList *list;
+		static int instanceCount;
+		void _addMateria(AMateria *node);
+		void _clearAllMaterias();
 	public:
 		Character();
 		Character(const Character &obj);
 		Character &operator=(const Character &obj);
 		~Character();
-		std::string const &getName();
+		std::string const &getName() const;
 		void equip(AMateria *m);
 		void unequip(int idx);
 		void use(int idx, ICharacter &target);
