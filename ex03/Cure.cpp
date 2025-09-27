@@ -24,7 +24,7 @@ Cure& Cure::operator=(const Cure &obj)
 
 Cure::~Cure()
 {
-	std::cout << "Cure Destructor" << std::endl;
+	std::cout << "Cure destructor" << std::endl;
 }
 
 AMateria* Cure::clone() const

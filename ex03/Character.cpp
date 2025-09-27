@@ -55,9 +55,15 @@ Character& Character::operator=(const Character &obj)
 
 Character::~Character()
 {
-	std::cout << "Character Destructor" << std::endl;
+	std::cout << "Character destructor" << std::endl;
 	for (int i = 0; i < INVENTORY_SIZE; i++)
-		delete _inventory[i];
+	{
+		if (_inventory[i] != NULL)
+		{
+			delete _inventory[i];
+			_inventory[i] = NULL;
+		}
+	}
 	instanceCount--;
 	if (instanceCount == 0)
 		_clearAllMaterias();
@@ -73,10 +79,9 @@ void Character::equip(AMateria *m)
 	if (m == NULL || _inventoryCount > 3)
 	{
 		std::cout << "Inventory full or Materia is NULL" << std::endl;
-		delete m;
 		return ;
 	}
-	_inventory[_inventoryCount] = m;
+	_inventory[_inventoryCount] = m->clone();
 	std::cout << "Equipped materia at index " << _inventoryCount << std::endl;
 	_inventoryCount++;
 }

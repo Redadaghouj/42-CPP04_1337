@@ -24,7 +24,7 @@ Ice& Ice::operator=(const Ice &obj)
 
 Ice::~Ice()
 {
-	std::cout << "Ice Destructor" << std::endl;
+	std::cout << "Ice destructor" << std::endl;
 }
 
 AMateria* Ice::clone() const
