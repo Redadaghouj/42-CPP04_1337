@@ -1,7 +1,7 @@
 ### 🖥️ CPP04 - 1337 Project
 
 [![1337 Badge](https://img.shields.io/badge/1337-Project-blue)](https://www.42network.org/)
-![Status](https://img.shields.io/badge/Status-In_Progress-orange) ![Grade](https://img.shields.io/badge/Grade-0%2F80-progress)
+![Status](https://img.shields.io/badge/Status-In_Progress-orange) ![Grade](https://img.shields.io/badge/Grade-100%2F80-progress)
  
 
 ### Subtype Polymorphism, Abstract Classes, and Interfaces
