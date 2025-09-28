@@ -34,10 +34,13 @@ void testDogCopy()
 	Dog dog;
 	dog.getBrain()->setIdea("++[New DOG idea]++", 0);
 
-	Dog copyDog(dog); // copy constructor
-	std::cout << "Copied Dog idea[0]: " 
-			<< copyDog.getBrain()->getIdea(0) 
-			<< std::endl;
+	Dog copyDog(dog);
+	std::cout << "Copied Dog idea[0]: " << copyDog.getBrain()->getIdea(0) << std::endl;
+
+	dog.getBrain()->setIdea("-----[New DOG idea]-----", 0);
+	std::cout << "Dog idea[0]: " << dog.getBrain()->getIdea(0) << std::endl;
+
+	std::cout << "Copied Dog idea[0]: " << copyDog.getBrain()->getIdea(0) << std::endl;
 }
 
 int main()

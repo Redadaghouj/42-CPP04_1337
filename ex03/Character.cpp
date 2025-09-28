@@ -57,13 +57,7 @@ Character::~Character()
 {
 	std::cout << "Character destructor" << std::endl;
 	for (int i = 0; i < INVENTORY_SIZE; i++)
-	{
-		if (_inventory[i] != NULL)
-		{
 			delete _inventory[i];
-			_inventory[i] = NULL;
-		}
-	}
 	instanceCount--;
 	if (instanceCount == 0)
 		_clearAllMaterias();
@@ -79,9 +73,10 @@ void Character::equip(AMateria *m)
 	if (m == NULL || _inventoryCount > 3)
 	{
 		std::cout << "Inventory full or Materia is NULL" << std::endl;
+		delete m;
 		return ;
 	}
-	_inventory[_inventoryCount] = m->clone();
+	_inventory[_inventoryCount] = m;
 	std::cout << "Equipped materia at index " << _inventoryCount << std::endl;
 	_inventoryCount++;
 }

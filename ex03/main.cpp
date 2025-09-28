@@ -4,14 +4,8 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
-void ll()
-{
-	system("leaks -q materia");
-}
-
 int main()
 {
-	atexit(ll);
 	std::cout << "=== Basic test from instructions ===" << std::endl;
 	IMateriaSource *src = new MateriaSource();
 	src->learnMateria(new Ice());
@@ -21,11 +15,6 @@ int main()
 
 	AMateria *tmp;
 	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	me->equip(tmp);
-
-	me->equip(tmp);
-	me->equip(tmp);
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
@@ -52,7 +41,6 @@ int main()
 	std::cout << "\n=== Destructor cleanup ===" << std::endl;
 	delete bob;
 	delete me;
-	delete tmp;
 	delete src;
 	delete alice;
 

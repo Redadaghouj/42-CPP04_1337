@@ -43,13 +43,7 @@ MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource Destructor" << std::endl;
 	for (int i = 0; i < MATERIA_SIZE; i++)
-	{
-		if (_materia[i] != NULL)
-		{
 			delete _materia[i];
-			_materia[i] = NULL;
-		}
-	}
 }
 
 void MateriaSource::learnMateria(AMateria *m)
